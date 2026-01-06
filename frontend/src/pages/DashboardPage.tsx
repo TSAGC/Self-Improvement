@@ -1,52 +1,182 @@
 import { Link } from "react-router-dom"
 
 export function DashboardPage() {
+  const todaysWorkout = {
+    name: "Push Day (Strength)",
+    exercisesCount: 6,
+    estimatedMinutes: 55,
+  }
+
+  const stats = {
+    weeklyWorkouts: 4,
+    streakDays: 12,
+    lastPr: "Bench Press 100kg x 3",
+    weeklyVolumeKg: 12450,
+  }
+
   return (
     <div className="mx-auto w-full max-w-6xl p-4 md:p-6">
-      <div className="flex items-end justify-between gap-4">
+      <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between md:gap-6">
         <div>
-          <h1 className="text-2xl font-semibold tracking-tight">Dashboard</h1>
+          <h1 className="text-2xl font-semibold tracking-tight md:text-3xl">
+            Dashboard
+          </h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            Today’s focus and quick actions.
+            Today’s focus, momentum, and quick actions.
           </p>
+        </div>
+
+        <div className="flex gap-2">
+          <Link
+            to="/workout/active"
+            className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-4 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
+          >
+            Start Workout
+          </Link>
+          <Link
+            to="/workouts"
+            className="inline-flex h-10 items-center justify-center rounded-md border border-border bg-card px-4 text-sm font-medium text-card-foreground hover:bg-accent"
+          >
+            Workouts
+          </Link>
         </div>
       </div>
 
-      <div className="mt-6 grid gap-4 md:grid-cols-2">
-        <div className="rounded-xl border border-border bg-card p-4">
-          <div className="flex items-start justify-between gap-3">
-            <div>
-              <div className="text-sm font-medium">Today’s Workout</div>
-              <div className="mt-2 text-sm text-muted-foreground">
-                Placeholder. This will become your “Start / Continue workout” card.
+      <section className="mt-6">
+        <div className="rounded-2xl border border-border bg-card p-5 md:p-6">
+          <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+            <div className="min-w-0">
+              <div className="text-sm font-medium text-muted-foreground">
+                Today’s Workout
+              </div>
+              <div className="mt-2 text-2xl font-semibold tracking-tight">
+                {todaysWorkout.name}
+              </div>
+              <div className="mt-3 flex flex-wrap gap-2">
+                <div className="rounded-full bg-muted px-3 py-1 text-xs text-muted-foreground">
+                  {todaysWorkout.exercisesCount} exercises
+                </div>
+                <div className="rounded-full bg-muted px-3 py-1 text-xs text-muted-foreground">
+                  ~{todaysWorkout.estimatedMinutes} min
+                </div>
+                <div className="rounded-full bg-muted px-3 py-1 text-xs text-muted-foreground">
+                  Strength focus
+                </div>
+              </div>
+              <div className="mt-4 text-sm text-muted-foreground">
+                Warm-up ready. Log fast. Stay in the zone.
               </div>
             </div>
 
-            <Link
-              to="/workout/active"
-              className="inline-flex h-9 items-center justify-center rounded-md bg-primary px-3 text-sm font-medium text-primary-foreground hover:bg-primary/90"
-            >
-              Start Workout
-            </Link>
+            <div className="flex w-full flex-col gap-3 md:w-auto md:min-w-60">
+              <Link
+                to="/workout/active"
+                className="inline-flex h-11 w-full items-center justify-center rounded-md bg-primary px-4 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
+              >
+                Start Workout
+              </Link>
+              <div className="rounded-xl border border-border bg-background p-3">
+                <div className="text-xs text-muted-foreground">Estimated duration</div>
+                <div className="mt-1 text-lg font-semibold">
+                  {todaysWorkout.estimatedMinutes} min
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="mt-4 h-24 rounded-lg bg-muted" />
+
+          <div className="mt-6 grid gap-3 md:grid-cols-3">
+            <div className="rounded-xl border border-border bg-background p-4">
+              <div className="text-xs text-muted-foreground">Next exercise</div>
+              <div className="mt-1 text-sm font-semibold">Bench Press</div>
+            </div>
+            <div className="rounded-xl border border-border bg-background p-4">
+              <div className="text-xs text-muted-foreground">Session goal</div>
+              <div className="mt-1 text-sm font-semibold">Beat last week’s reps</div>
+            </div>
+            <div className="rounded-xl border border-border bg-background p-4">
+              <div className="text-xs text-muted-foreground">Readiness</div>
+              <div className="mt-1 text-sm font-semibold">Good</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="mt-6">
+        <div className="mb-3 flex items-end justify-between">
+          <h2 className="text-lg font-semibold tracking-tight">Stats</h2>
+          <div className="text-xs text-muted-foreground">This week</div>
         </div>
 
-        <div className="rounded-xl border border-border bg-card p-4">
-          <div className="text-sm font-medium">Progress Preview</div>
-          <div className="mt-2 text-sm text-muted-foreground">
-            Placeholder chart area.
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="rounded-xl border border-border bg-card p-4">
+            <div className="text-xs text-muted-foreground">Workouts completed</div>
+            <div className="mt-2 text-2xl font-semibold">{stats.weeklyWorkouts}</div>
+            <div className="mt-1 text-xs text-muted-foreground">Target: 5</div>
           </div>
-          <div className="mt-4 h-24 rounded-lg bg-muted" />
-        </div>
-      </div>
 
-      <div className="mt-4 rounded-xl border border-border bg-card p-4">
-        <div className="text-sm font-medium">Quick notes</div>
-        <div className="mt-2 text-sm text-muted-foreground">
-          Placeholder.
+          <div className="rounded-xl border border-border bg-card p-4">
+            <div className="text-xs text-muted-foreground">Current streak</div>
+            <div className="mt-2 text-2xl font-semibold">{stats.streakDays} days</div>
+            <div className="mt-1 text-xs text-muted-foreground">Keep it alive today</div>
+          </div>
+
+          <div className="rounded-xl border border-border bg-card p-4">
+            <div className="text-xs text-muted-foreground">Last PR</div>
+            <div className="mt-2 truncate text-sm font-semibold">{stats.lastPr}</div>
+            <div className="mt-1 text-xs text-muted-foreground">Nice work</div>
+          </div>
+
+          <div className="rounded-xl border border-border bg-card p-4">
+            <div className="text-xs text-muted-foreground">Total volume</div>
+            <div className="mt-2 text-2xl font-semibold">
+              {stats.weeklyVolumeKg.toLocaleString()} kg
+            </div>
+            <div className="mt-1 text-xs text-muted-foreground">Across all lifts</div>
+          </div>
         </div>
-      </div>
+      </section>
+
+      <section className="mt-6">
+        <div className="mb-3 flex items-end justify-between">
+          <h2 className="text-lg font-semibold tracking-tight">Quick actions</h2>
+          <div className="text-xs text-muted-foreground">Get things done fast</div>
+        </div>
+
+        <div className="grid gap-3 md:grid-cols-3">
+          <Link
+            to="/workouts"
+            className="group rounded-xl border border-border bg-card p-4 hover:bg-accent"
+          >
+            <div className="text-sm font-semibold">Create workout</div>
+            <div className="mt-1 text-sm text-muted-foreground">
+              Build a template in under a minute.
+            </div>
+            <div className="mt-4 h-1 w-14 rounded-full bg-primary/70 transition-all group-hover:w-20" />
+          </Link>
+
+          <Link
+            to="/progress"
+            className="group rounded-xl border border-border bg-card p-4 hover:bg-accent"
+          >
+            <div className="text-sm font-semibold">View progress</div>
+            <div className="mt-1 text-sm text-muted-foreground">
+              Charts, PRs, and trends.
+            </div>
+            <div className="mt-4 h-1 w-14 rounded-full bg-primary/70 transition-all group-hover:w-20" />
+          </Link>
+
+          <Link
+            to="/goals"
+            className="group rounded-xl border border-border bg-card p-4 hover:bg-accent"
+          >
+            <div className="text-sm font-semibold">Set a goal</div>
+            <div className="mt-1 text-sm text-muted-foreground">
+              Choose what “winning” looks like.
+            </div>
+            <div className="mt-4 h-1 w-14 rounded-full bg-primary/70 transition-all group-hover:w-20" />
+          </Link>
+        </div>
+      </section>
     </div>
   )
 }
