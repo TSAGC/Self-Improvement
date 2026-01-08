@@ -3,7 +3,12 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 
-document.documentElement.classList.add('dark')
+import { applyThemePreference, getThemePreference, subscribePreferencesChange } from './lib/preferences'
+
+applyThemePreference(getThemePreference())
+subscribePreferencesChange(() => {
+  applyThemePreference(getThemePreference())
+})
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

@@ -29,13 +29,13 @@ export function DashboardPage() {
         <div className="flex gap-2">
           <Link
             to="/workout/active"
-            className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-4 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
+            className="si-btn inline-flex h-10 items-center justify-center rounded-md bg-primary px-4 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
           >
             Start Workout
           </Link>
           <Link
             to="/workouts"
-            className="inline-flex h-10 items-center justify-center rounded-md border border-border bg-card px-4 text-sm font-medium text-card-foreground hover:bg-accent"
+            className="si-btn inline-flex h-10 items-center justify-center rounded-md border border-border bg-card px-4 text-sm font-medium text-card-foreground hover:bg-accent"
           >
             Workouts
           </Link>
@@ -43,13 +43,13 @@ export function DashboardPage() {
       </div>
 
       <section className="mt-6">
-        <div className="rounded-2xl border border-border bg-card p-5 md:p-6">
+        <div className="si-surface si-card rounded-2xl p-5 md:p-6">
           <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
             <div className="min-w-0">
               <div className="text-sm font-medium text-muted-foreground">
                 Today’s Workout
               </div>
-              <div className="mt-2 text-2xl font-semibold tracking-tight">
+              <div className="si-float mt-2 text-2xl font-semibold tracking-tight">
                 {todaysWorkout.name}
               </div>
               <div className="mt-3 flex flex-wrap gap-2">
@@ -71,7 +71,7 @@ export function DashboardPage() {
             <div className="flex w-full flex-col gap-3 md:w-auto md:min-w-60">
               <Link
                 to="/workout/active"
-                className="inline-flex h-11 w-full items-center justify-center rounded-md bg-primary px-4 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
+                className="si-btn inline-flex h-11 w-full items-center justify-center rounded-md bg-primary px-4 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
               >
                 Start Workout
               </Link>
@@ -108,25 +108,25 @@ export function DashboardPage() {
         </div>
 
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          <div className="rounded-xl border border-border bg-card p-4">
+          <div className="si-surface si-card rounded-xl p-4">
             <div className="text-xs text-muted-foreground">Workouts completed</div>
             <div className="mt-2 text-2xl font-semibold">{stats.weeklyWorkouts}</div>
             <div className="mt-1 text-xs text-muted-foreground">Target: 5</div>
           </div>
 
-          <div className="rounded-xl border border-border bg-card p-4">
+          <div className="si-surface si-card rounded-xl p-4">
             <div className="text-xs text-muted-foreground">Current streak</div>
             <div className="mt-2 text-2xl font-semibold">{stats.streakDays} days</div>
             <div className="mt-1 text-xs text-muted-foreground">Keep it alive today</div>
           </div>
 
-          <div className="rounded-xl border border-border bg-card p-4">
+          <div className="si-surface si-card rounded-xl p-4">
             <div className="text-xs text-muted-foreground">Last PR</div>
             <div className="mt-2 truncate text-sm font-semibold">{stats.lastPr}</div>
             <div className="mt-1 text-xs text-muted-foreground">Nice work</div>
           </div>
 
-          <div className="rounded-xl border border-border bg-card p-4">
+          <div className="si-surface si-card rounded-xl p-4">
             <div className="text-xs text-muted-foreground">Total volume</div>
             <div className="mt-2 text-2xl font-semibold">
               {stats.weeklyVolumeKg.toLocaleString()} kg
@@ -145,7 +145,7 @@ export function DashboardPage() {
         <div className="grid gap-3 md:grid-cols-3">
           <Link
             to="/workouts"
-            className="group rounded-xl border border-border bg-card p-4 hover:bg-accent"
+            className="si-card group rounded-xl border border-border bg-card p-4 hover:bg-accent"
           >
             <div className="text-sm font-semibold">Create workout</div>
             <div className="mt-1 text-sm text-muted-foreground">
@@ -156,7 +156,7 @@ export function DashboardPage() {
 
           <Link
             to="/progress"
-            className="group rounded-xl border border-border bg-card p-4 hover:bg-accent"
+            className="si-card group rounded-xl border border-border bg-card p-4 hover:bg-accent"
           >
             <div className="text-sm font-semibold">View progress</div>
             <div className="mt-1 text-sm text-muted-foreground">
@@ -167,7 +167,7 @@ export function DashboardPage() {
 
           <Link
             to="/goals"
-            className="group rounded-xl border border-border bg-card p-4 hover:bg-accent"
+            className="si-card group rounded-xl border border-border bg-card p-4 hover:bg-accent"
           >
             <div className="text-sm font-semibold">Set a goal</div>
             <div className="mt-1 text-sm text-muted-foreground">

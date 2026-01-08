@@ -41,7 +41,7 @@ export function AppLayout() {
   }, [isWorkoutFocus, location.pathname])
 
   return (
-    <div className="min-h-dvh bg-background text-foreground">
+    <div className="si-aurora min-h-dvh bg-background text-foreground">
       <div className="flex min-h-dvh">
         {!isWorkoutFocus ? (
           <aside className="hidden w-64 border-r border-border bg-card md:flex">
@@ -49,8 +49,8 @@ export function AppLayout() {
           </aside>
         ) : null}
 
-        <div className="flex min-w-0 flex-1 flex-col">
-          <header className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="relative z-10 flex min-w-0 flex-1 flex-col">
+          <header className="sticky top-0 z-40 border-b border-border bg-background/70 backdrop-blur supports-[backdrop-filter]:bg-background/60">
             <TopBar compact={isWorkoutFocus} />
           </header>
 

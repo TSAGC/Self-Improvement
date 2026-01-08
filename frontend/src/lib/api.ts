@@ -1,6 +1,10 @@
+import { getApiUrlOverride } from "@/lib/preferences"
+
 const DEFAULT_API_URL = "http://localhost:4000"
 
 export function getApiBaseUrl() {
+  const override = getApiUrlOverride()
+  if (override) return override
   const url = import.meta.env.VITE_API_URL
   if (typeof url === "string" && url.length > 0) return url
   return DEFAULT_API_URL

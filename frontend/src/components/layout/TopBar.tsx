@@ -33,14 +33,14 @@ export function TopBar({ compact }: { compact?: boolean }) {
           <Link
             to="/dashboard"
             replace
-            className="inline-flex h-9 items-center justify-center rounded-md bg-destructive px-3 text-sm font-medium text-destructive-foreground hover:bg-destructive/90"
+            className="si-btn inline-flex h-9 items-center justify-center rounded-md bg-destructive px-3 text-sm font-medium text-destructive-foreground hover:bg-destructive/90"
           >
             End Workout
           </Link>
         ) : (
           <Link
             to="/settings"
-            className="inline-flex size-9 items-center justify-center rounded-md border border-border bg-card text-card-foreground hover:bg-accent"
+            className="si-btn inline-flex size-9 items-center justify-center rounded-md border border-border bg-card text-card-foreground hover:bg-accent"
             aria-label="Settings"
           >
             <Settings className="size-4" />

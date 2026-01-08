@@ -179,14 +179,14 @@ export function WorkoutsPage() {
           <button
             type="button"
             onClick={refreshWorkouts}
-            className="inline-flex h-10 items-center justify-center rounded-md border border-border bg-card px-4 text-sm font-medium hover:bg-accent"
+            className="si-btn inline-flex h-10 items-center justify-center rounded-md border border-border bg-card px-4 text-sm font-medium hover:bg-accent"
           >
             Refresh
           </button>
           <button
             type="button"
             onClick={openCreate}
-            className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-4 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
+            className="si-btn inline-flex h-10 items-center justify-center rounded-md bg-primary px-4 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
           >
             Create workout
           </button>
@@ -201,7 +201,7 @@ export function WorkoutsPage() {
 
       <div className="mt-6 grid gap-3 md:grid-cols-2">
         {loading ? (
-          <div className="rounded-2xl border border-border bg-card p-5">
+          <div className="si-surface rounded-2xl p-5">
             <div className="h-5 w-40 rounded bg-muted" />
             <div className="mt-3 h-4 w-64 rounded bg-muted" />
             <div className="mt-5 h-10 w-full rounded bg-muted" />
@@ -209,7 +209,7 @@ export function WorkoutsPage() {
         ) : null}
 
         {!loading && items.length === 0 ? (
-          <div className="rounded-2xl border border-border bg-card p-6 md:col-span-2">
+          <div className="si-surface rounded-2xl p-6 md:col-span-2">
             <div className="text-base font-semibold">No workouts yet</div>
             <div className="mt-2 text-sm text-muted-foreground">
               Create your first template and add exercises.
@@ -217,7 +217,7 @@ export function WorkoutsPage() {
             <button
               type="button"
               onClick={openCreate}
-              className="mt-4 inline-flex h-10 items-center justify-center rounded-md bg-primary px-4 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
+              className="si-btn mt-4 inline-flex h-10 items-center justify-center rounded-md bg-primary px-4 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
             >
               Create workout
             </button>
@@ -226,7 +226,7 @@ export function WorkoutsPage() {
 
         {!loading
           ? items.map((w) => (
-              <div key={w.id} className="rounded-2xl border border-border bg-card p-5">
+              <div key={w.id} className="si-surface si-card rounded-2xl p-5">
                 <div className="flex items-start justify-between gap-4">
                   <div className="min-w-0">
                     <div className="truncate text-lg font-semibold">{w.name}</div>
@@ -242,14 +242,14 @@ export function WorkoutsPage() {
                 <div className="mt-4 flex flex-wrap gap-2">
                   <Link
                     to={`/workout/${w.id}`}
-                    className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-4 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
+                    className="si-btn inline-flex h-10 items-center justify-center rounded-md bg-primary px-4 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
                   >
                     Start
                   </Link>
                   <button
                     type="button"
                     onClick={() => openEditExercises(w.id)}
-                    className="inline-flex h-10 items-center justify-center rounded-md border border-border bg-background px-4 text-sm font-medium hover:bg-accent"
+                    className="si-btn inline-flex h-10 items-center justify-center rounded-md border border-border bg-background px-4 text-sm font-medium hover:bg-accent"
                   >
                     Edit exercises
                   </button>
@@ -262,7 +262,7 @@ export function WorkoutsPage() {
       {isCreateOpen ? (
         <div className="fixed inset-0 z-50">
           <div className="absolute inset-0 bg-black/70" onClick={closeCreate} />
-          <div className="absolute inset-x-0 bottom-0 mx-auto w-full max-w-2xl rounded-t-2xl border border-border bg-card p-5 md:bottom-auto md:top-1/2 md:-translate-y-1/2 md:rounded-2xl">
+          <div className="si-surface absolute inset-x-0 bottom-0 mx-auto w-full max-w-2xl rounded-t-2xl p-5 md:bottom-auto md:top-1/2 md:-translate-y-1/2 md:rounded-2xl">
             <div className="flex items-start justify-between gap-4">
               <div>
                 <div className="text-lg font-semibold tracking-tight">Create workout</div>
@@ -273,7 +273,7 @@ export function WorkoutsPage() {
               <button
                 type="button"
                 onClick={closeCreate}
-                className="inline-flex h-9 items-center justify-center rounded-md border border-border bg-background px-3 text-sm font-medium hover:bg-accent"
+                className="si-btn inline-flex h-9 items-center justify-center rounded-md border border-border bg-background px-3 text-sm font-medium hover:bg-accent"
               >
                 Close
               </button>
@@ -304,14 +304,14 @@ export function WorkoutsPage() {
               <button
                 type="button"
                 onClick={closeCreate}
-                className="inline-flex h-11 items-center justify-center rounded-md border border-border bg-background px-4 text-sm font-medium hover:bg-accent"
+                className="si-btn inline-flex h-11 items-center justify-center rounded-md border border-border bg-background px-4 text-sm font-medium hover:bg-accent"
               >
                 Cancel
               </button>
               <button
                 type="button"
                 onClick={createWorkout}
-                className="inline-flex h-11 items-center justify-center rounded-md bg-primary px-4 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
+                className="si-btn inline-flex h-11 items-center justify-center rounded-md bg-primary px-4 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
               >
                 Create
               </button>

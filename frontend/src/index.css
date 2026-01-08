@@ -124,3 +124,112 @@
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes si-aurora {
+  0% {
+    transform: translate3d(-6%, -4%, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(6%, 4%, 0) scale(1.05);
+  }
+  100% {
+    transform: translate3d(-6%, -4%, 0) scale(1);
+  }
+}
+
+@keyframes si-float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@layer components {
+  .si-aurora {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .si-aurora::before {
+    content: "";
+    position: absolute;
+    inset: -30%;
+    background:
+      radial-gradient(60% 60% at 20% 30%, hsl(var(--color-chart-1) / 0.18), transparent 55%),
+      radial-gradient(55% 55% at 80% 20%, hsl(var(--color-chart-2) / 0.18), transparent 55%),
+      radial-gradient(70% 70% at 70% 80%, hsl(var(--color-chart-4) / 0.14), transparent 60%),
+      radial-gradient(65% 65% at 25% 85%, hsl(var(--color-chart-5) / 0.12), transparent 60%);
+    filter: blur(40px) saturate(1.2);
+    opacity: 0.9;
+    animation: si-aurora 12s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .si-aurora::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      hsl(var(--background) / 0.2),
+      hsl(var(--background) / 0.85)
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .si-surface {
+    background: hsl(var(--card) / 0.86);
+    border: 1px solid hsl(var(--border));
+    box-shadow:
+      0 1px 0 hsl(var(--border) / 0.4) inset,
+      0 24px 60px hsl(0 0% 0% / 0.25);
+    backdrop-filter: blur(14px);
+  }
+
+  .si-card {
+    transition:
+      transform 160ms ease,
+      box-shadow 160ms ease,
+      background-color 160ms ease,
+      border-color 160ms ease;
+    will-change: transform;
+  }
+
+  .si-card:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 1px 0 hsl(var(--border) / 0.35) inset,
+      0 28px 70px hsl(0 0% 0% / 0.35);
+  }
+
+  .si-card:active {
+    transform: translateY(-1px) scale(0.995);
+  }
+
+  .si-btn {
+    transition:
+      transform 120ms ease,
+      filter 120ms ease,
+      background-color 120ms ease,
+      border-color 120ms ease;
+  }
+
+  .si-btn:hover {
+    filter: brightness(1.05);
+  }
+
+  .si-btn:active {
+    transform: translateY(1px) scale(0.99);
+  }
+
+  .si-float {
+    animation: si-float 6s ease-in-out infinite;
+  }
+}

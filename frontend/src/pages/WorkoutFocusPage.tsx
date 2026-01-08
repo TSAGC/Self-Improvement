@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 
 import { apiGet, apiPatch, apiPost } from "@/lib/api"
+import { getWeightUnit, kgToLb, lbToKg, subscribePreferencesChange } from "@/lib/preferences"
 
 export function WorkoutFocusPage() {
   const { id } = useParams()
@@ -66,6 +67,8 @@ export function WorkoutFocusPage() {
   const pendingPatchTimersRef = useRef<Record<string, number>>({})
   const tempIdRef = useRef(0)
 
+  const [weightUnit, setWeightUnit] = useState(() => getWeightUnit())
+
   const exerciseRefs = useRef<Array<HTMLDivElement | null>>([])
 
   const [startedAt] = useState(() => Date.now())
@@ -90,6 +93,12 @@ export function WorkoutFocusPage() {
       cancelled = true
     }
   }, [workoutId])
+
+  useEffect(() => {
+    return subscribePreferencesChange(() => {
+      setWeightUnit(getWeightUnit())
+    })
+  }, [])
 
   useEffect(() => {
     const t = window.setInterval(() => setNow(Date.now()), 1000)
@@ -213,13 +222,13 @@ export function WorkoutFocusPage() {
             <div className="text-xs font-medium text-muted-foreground">
               Workout
             </div>
-            <h1 className="mt-1 truncate text-2xl font-semibold tracking-tight md:text-3xl">
+            <h1 className="mt-1 truncate text-2xl font-semibold tracking-tight md:text-3xl si-surface">
               {workoutName || workoutTitle}
             </h1>
           </div>
 
           <div className="flex items-center gap-2">
-            <div className="rounded-lg border border-border bg-card px-3 py-2">
+            <div className="si-surface rounded-lg border border-border bg-card px-3 py-2">
               <div className="text-[11px] font-medium text-muted-foreground">
                 Timer
               </div>
@@ -232,7 +241,7 @@ export function WorkoutFocusPage() {
 
         <div className="space-y-3">
           {exercises.length === 0 ? (
-            <div className="rounded-2xl border border-border bg-card p-5 md:p-6">
+            <div className="si-surface rounded-2xl p-5 md:p-6">
               <div className="text-lg font-semibold tracking-tight">No exercises yet</div>
               <div className="mt-2 text-sm text-muted-foreground">
                 This workout template doesn’t have any exercises. Add some first, then come back to log.
@@ -241,7 +250,7 @@ export function WorkoutFocusPage() {
                 <Link
                   to="/workouts"
                   replace
-                  className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-4 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
+                  className="si-btn inline-flex h-10 items-center justify-center rounded-md bg-primary px-4 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
                 >
                   Go to Workouts
                 </Link>
@@ -257,7 +266,7 @@ export function WorkoutFocusPage() {
                   ref={(el) => {
                     exerciseRefs.current[exerciseIndex] = el
                   }}
-                  className="rounded-2xl border border-border bg-card"
+                  className="si-surface si-card rounded-2xl"
                 >
                   <details open className="group">
                     <summary className="cursor-pointer list-none select-none px-4 py-4 md:px-5">
@@ -297,15 +306,22 @@ export function WorkoutFocusPage() {
                               <div className="mt-0.5 text-sm text-muted-foreground">
                                 <div className="flex flex-wrap items-center gap-2">
                                   <label className="flex items-center gap-2">
-                                    <span className="text-xs text-muted-foreground">kg</span>
+                                    <span className="text-xs text-muted-foreground">{weightUnit}</span>
                                     <input
                                       inputMode="decimal"
                                       type="number"
                                       step="0.5"
-                                      value={set.weightKg}
+                                      value={
+                                        weightUnit === "lb"
+                                          ? Math.round(kgToLb(set.weightKg))
+                                          : set.weightKg
+                                      }
                                       onChange={(e) =>
                                         updateSetField(exerciseIndex, set.id, {
-                                          weightKg: Number(e.target.value),
+                                          weightKg:
+                                            weightUnit === "lb"
+                                              ? lbToKg(Number(e.target.value))
+                                              : Number(e.target.value),
                                         })
                                       }
                                       className="h-9 w-24 rounded-md border border-border bg-card px-2 text-sm text-foreground"
@@ -349,7 +365,7 @@ export function WorkoutFocusPage() {
                       <button
                         type="button"
                         onClick={() => addSet(exerciseIndex)}
-                        className="mt-4 inline-flex h-11 w-full items-center justify-center rounded-md border border-border bg-card text-sm font-semibold hover:bg-accent"
+                        className="si-btn mt-4 inline-flex h-11 w-full items-center justify-center rounded-md border border-border bg-card text-sm font-semibold hover:bg-accent"
                       >
                         Add set
                       </button>
@@ -381,7 +397,7 @@ export function WorkoutFocusPage() {
               tabIndex={allExercisesCompleted ? 0 : -1}
               className={
                 allExercisesCompleted
-                  ? "inline-flex h-11 items-center justify-center rounded-md bg-primary px-4 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
+                  ? "si-btn inline-flex h-11 items-center justify-center rounded-md bg-primary px-4 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
                   : "pointer-events-none inline-flex h-11 items-center justify-center rounded-md bg-muted px-4 text-sm font-semibold text-muted-foreground"
               }
             >
